@@ -1,0 +1,167 @@
+<html>
+<head>
+  <title>Kalkulator</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+</head>
+  <script>
+    $(function () {
+          $("#chk1").click(function () {
+              if ($(this).is(":checked")) {
+                  $("#txt1").removeAttr("disabled");
+                  $("#txt1").focus();
+              } else {
+                  $("#txt1").attr("disabled", "disabled");
+              }
+          });
+          $("#chk2").click(function () {
+              if ($(this).is(":checked")) {
+                  $("#txt2").removeAttr("disabled");
+                  $("#txt2").focus();
+              } else {
+                  $("#txt2").attr("disabled", "disabled");
+              }
+          });
+          $("#chk3").click(function () {
+              if ($(this).is(":checked")) {
+                  $("#txt3").removeAttr("disabled");
+                  $("#txt3").focus();
+              } else {
+                  $("#txt3").attr("disabled", "disabled");
+              }
+          });
+      });
+
+    var inputSatu = "txt1",inputDua = "txt2", inputTiga = "txt3",outputId = "resultHere";
+    var getInputs = function(id) {
+      return parseInt(document.getElementById(id).value);
+    }
+    var showOutput = function(outputValue, outputIdAsArg) {
+      document.getElementById(outputId).innerHTML = outputValue;
+    }
+    var hitung = function(inputan, txt1, txt2, txt3, resultHere) {
+      if(inputan == 'tambah'){
+        if (txt1 && txt2 && txt3) {
+          return txt1 + txt2 + txt3;
+        }
+        else if (txt1 && txt2) {
+          return txt1 + txt2;
+        }
+        else if (txt2 && txt3) {
+          return txt2 + txt3;
+        }
+        else if (txt1 && txt3) {
+          return txt1 + txt3;
+        }
+        else{
+          alert("Tidak Ada Yang Bisa Berdiri Sendiri, Percayalah!");
+          return resultHere="0";
+        }
+      }
+      else if(inputan == 'kurang'){
+        if (txt1 && txt2 && txt3) {
+          return txt1 - txt2 - txt3;
+        }
+        else if (txt1 && txt2) {
+          return txt1 - txt2;
+        }
+        else if (txt2 && txt3) {
+          return txt2 - txt3;
+        }
+        else if (txt1 && txt3) {
+          return txt1 - txt3;
+        }
+        else{
+          alert("Tidak Ada Yang Bisa Berdiri Sendiri, Percayalah!");
+          return resultHere="0";
+        }
+      }
+      else if(inputan == 'kali'){
+        if (txt1 && txt2 && txt3) {
+          return txt1 * txt2 * txt3;
+        }
+        else if (txt1 && txt2) {
+          return txt1 * txt2;
+        }
+        else if (txt2 && txt3) {
+          return txt2 * txt3;
+        }
+        else if (txt1 && txt3) {
+          return txt1 * txt3;
+        }
+        else{
+          alert("Tidak Ada Yang Bisa Berdiri Sendiri, Percayalah!");
+          return resultHere="0";
+        }
+      }
+      else if(inputan == 'bagi'){
+        if (txt1 && txt2 && txt3) {
+          return txt1 / txt2 / txt3;
+        }
+        else if (txt1 && txt2) {
+          return txt1 / txt2;
+        }
+        else if (txt2 && txt3) {
+          return txt2 / txt3;
+        }
+        else if (txt1 && txt3) {
+          return txt1 / txt3;
+        }
+        else{
+          alert("Tidak Ada Yang Bisa Berdiri Sendiri, Percayalah!");
+          return resultHere="0";
+        }
+      }
+    } 
+
+    var operation = function(inputan){
+      x = getInputs(inputSatu);
+      y = getInputs(inputDua);
+      z = getInputs(inputTiga);
+
+      output = hitung(inputan, x, y, z);
+      showOutput(output);
+      
+      console.log(x + " " + inputan + " " + y + " " + inputan + " " + z + " = " + output)
+      console.log(this)
+    };
+  </script>
+<body>
+  <div class="box">
+      <label for="inputan">
+        <input type="number" id="txt1" class="satu" disabled="disabled" />
+        <input type="checkbox" id="chk1"/>
+      </label>
+      <br>
+      <label for="inputan">
+        <input type="number" id="txt2" class="satu" disabled="disabled" />
+        <input type="checkbox" id="chk2"/>
+      </label>
+      <br>
+      <label for="inputan">
+        <input type="number" id="txt3" class="tiga" disabled="disabled"/>
+        <input type="checkbox" id="chk3"/>
+      </label>
+      <br>
+      <label for="button">
+      <button onclick="operation('tambah')" class="btn_tambah"> + </button>
+      </label>
+      <label for="button">
+        <button onclick="operation('kurang')" class="btn_kurang"> - </button>
+      </label>
+      <label for="button">
+        <button onclick="operation('kali')" class="btn_kali"> x </button>
+      </label>
+      <label for="button">
+        <button onclick="operation('bagi')" class="btn_bagi"> / </button>
+      </label>
+      <br>
+      <hr style="margin-top: 20px; border-color: black;">
+      <br>
+      <div class="text">
+      <h4 class="txt1">Hasil</h4>
+      <h4 class="txt2" id="resultHere">0</h4>
+    </div>
+  </div>
+</body>
+</html>
